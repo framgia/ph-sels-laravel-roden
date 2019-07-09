@@ -1,5 +1,4 @@
 import _ from 'lodash';
-
 /*
 	Register User
 */
@@ -58,7 +57,7 @@ export const loginUser = payload => async dispatch => {
 }
 
 export const authLogout = () => async dispatch => {
-	
+  
 	axios.post('/api/logout').then( response =>{
 	
 		dispatch({type: 'AUTH_LOGOUT'})

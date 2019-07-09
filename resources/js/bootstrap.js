@@ -38,7 +38,6 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-
 if(auth_token){
 	window.axios.defaults.headers.common['Authorization'] = 'Bearer '+ auth_token;
 }

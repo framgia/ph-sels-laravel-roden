@@ -68,7 +68,7 @@ class NavHeader extends Component{
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key="3" style={{textAlign:'right', marginRight:'6px'}}>
-                <a>Logout</a>
+                <a onClick={this.handleLogout.bind(this)}>Logout</a>
             </Menu.Item>
           </Menu>
       )
