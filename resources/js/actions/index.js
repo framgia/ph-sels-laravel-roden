@@ -26,8 +26,8 @@ export const registerUser = payload => async dispatch => {
 export const checkAuth = () => async dispatch => {
 	
 	axios.get('/api/check-token').then(response => {
-	
-		dispatch({type: 'AUTH_CHECK'})
+
+		dispatch({type: 'AUTH_CHECK' , payload:response.data.user})
 			
 	}).catch(err=>{
 

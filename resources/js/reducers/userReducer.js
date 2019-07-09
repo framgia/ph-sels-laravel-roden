@@ -2,18 +2,16 @@ export default (state = {} , action) => {
 
     switch (action.type) {
         case 'AUTH_LOGIN':
-
-        console.log(action)
 			localStorage.setItem('access_token' , action.payload.token);
-        	return {...state ,action , isAuthenticated: true};
+        	return {...state , user:action.payload , isAuthenticated: true};
+
         case 'AUTH_LOGOUT':
 			localStorage.removeItem('access_token')
-			return {...state, isAuthenticated: false}
+			return {...state, user:{} ,isAuthenticated: false}
+
 		case 'AUTH_CHECK':
-			state = Object.assign({}, state, {
-			   isAuthenticated: !!localStorage.getItem('access_token')
-			});
-			return state;
+			return {...state , user:action.payload , isAuthenticated: !!localStorage.getItem('access_token')};
+
 		case 'AUTH_FAILED':
 			state = Object.assign({}, state,{
 				 errMsg: action.data.errorMsg

@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
+import 'antd/dist/antd.css';
+
 import App  from './components/App';
 import reducers from './reducers';
 
