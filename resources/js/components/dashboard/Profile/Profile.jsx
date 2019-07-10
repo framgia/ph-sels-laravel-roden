@@ -7,11 +7,9 @@ const { Title } = Typography;
 import './Profile.css';
 
 class Profile extends Component {
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps);
-  }
-
+  
   render() {
+
     return (
       <Fragment>
         <Row>
@@ -21,7 +19,7 @@ class Profile extends Component {
             </Col>
             <Col span={10} className="profile-info">
               <Row>
-                <a>{this.state ? this.state.user.name : ""}</a>
+                <a>{this.props.user.name}</a>
               </Row>
               <Row>
                 <a>Learned 20 words</a>
@@ -38,8 +36,13 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { user: state.authUser.user };
-};
+const mapStateToProps = (state) =>{
+    
+    var user = state.authUser.user.user ? state.authUser.user.user : state.authUser.user
+
+    return {isAuth : state.authUser.isAuthenticated,
+            user   : user}
+
+}
 
 export default connect(mapStateToProps)(Profile);

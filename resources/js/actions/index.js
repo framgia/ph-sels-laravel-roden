@@ -1,4 +1,5 @@
 import _ from 'lodash';
+
 /*
 	Register User
 */
@@ -42,8 +43,8 @@ export const checkAuth = () => async dispatch => {
 export const loginUser = payload => async dispatch => {
 
 	return new Promise( (resolve, reject) => {
-			 	axios.post('/api/login', payload).then(response=>{
-						
+			 	axios.post('/api/login', payload).then(response=>{	
+					
         			dispatch({type:'AUTH_LOGIN' , payload: response.data });
 
 					setTimeout(function() {

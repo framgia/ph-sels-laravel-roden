@@ -1,7 +1,7 @@
 import React,{Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import  { Redirect } from 'react-router-dom';
-import { Menu, Dropdown, Icon , Avatar , Row, Col} from 'antd';
+import { Menu, Dropdown, Icon , Avatar , Row, Col , Anchor, Divider} from 'antd';
 
 import { checkAuth } from '../../actions';
 import { authLogout } from '../../actions';
@@ -22,11 +22,6 @@ class NavHeader extends Component{
       this.props.checkAuth();
   }
 
-
-  componentWillReceiveProps(nextProps) {
-
-        this.setState(nextProps);
-    }
 
   handleLogout(){
     this.props.authLogout()
@@ -75,15 +70,23 @@ class NavHeader extends Component{
   }
 
   renderLogout(){
+  
+    var user = this.props.user.user ? this.props.user.user : this.props.user
 
     return (
+          <Fragment>
+          <Link to="/admin" className="item">
+            Admin panel
+          </Link>
+          <Divider type="vertical"/>
            <Dropdown overlay={this.menuList()} trigger={['click']}>
               <a className="ant-dropdown-link" href="#">
-                 <Avatar style={{ backgroundColor: '#87d068', margin: '6px 8px' }} icon="user" />
-                 <span>{this.state.user.name}</span>
-                 <Icon type="down" />
+                <Avatar style={{ backgroundColor: '#87d068', margin: '6px 8px' }} icon="user" />
+                <span>{user.name}</span>
+                <Icon type="down" />
               </a>
             </Dropdown>
+          </Fragment>
       ) 
   }
 
@@ -91,10 +94,10 @@ class NavHeader extends Component{
     return (
         <Fragment>
           <Link to="/login" className="item">
-                      Login
+            Login
           </Link>
           <Link to="/register" className="item">
-                    Register
+            Register
           </Link>
         </Fragment>
       )
@@ -104,7 +107,7 @@ class NavHeader extends Component{
      return (
         <div className="ui secondary pointing menu">
             <Link to="/" className="item">
-                S*ELS
+              S*ELS
             </Link>
             <div className="right menu">
               {this.props.isAuth ? this.renderLogout() : this.renderLogin()}

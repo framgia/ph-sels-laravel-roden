@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React, { Component } from 'react';
 import { Layout } from 'antd';
 
 import Profile from './Profile/Profile';
@@ -7,24 +7,18 @@ import './Index.css';
 
 const { Sider, Content } = Layout;
 
-
-class Index extends Component{
-
-	render(){
+class Index extends Component {
+	render() {
 		return (
-			  	<Layout className="dashboard">
-				  <Sider
-				  	theme="light"
-				  	width="300">
-				  	<Profile />
-				  </Sider>
-				  <Content
-				    className="dashboardContent"
-				  	theme="light">
+			<Layout className="dashboard">
+				<Sider theme="light" width="300">
+					<Profile />
+				</Sider>
+				<Content className="dashboardContent" theme="light">
 					<DashboardContent />
-				  </Content>
-				</Layout>
-			);
+				</Content>
+			</Layout>
+		);
 	}
 }
 
