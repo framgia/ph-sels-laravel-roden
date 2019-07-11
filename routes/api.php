@@ -17,6 +17,6 @@ Route::post('/register' , 'PassportController@register');
 Route::post('/login' , 'PassportController@login');
 
 Route::group(['middleware' => 'auth:api'], function() {
-	Route::post('/logout', 'PassportController@logout');
-	Route::get('/check-token', function(){return response()->json(['Token is valid']);});
+  Route::post('/logout', 'PassportController@logout');
+  Route::get('/check-token', function(){return response()->json(['Token is valid']);});
 });
