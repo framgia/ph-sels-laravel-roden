@@ -62587,7 +62587,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68801,7 +68801,7 @@ if (token) {
 }
 
 if (auth_token) {
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth_token;
+  window.axios.defaults.headers.common["Authorization"] = "Bearer " + auth_token;
 }
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -69277,7 +69277,7 @@ function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    'authUser': state.authUser
+    authUser: state.authUser
   };
 };
 
@@ -69390,8 +69390,6 @@ function (_Component) {
 
   return NavHeader;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-;
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
