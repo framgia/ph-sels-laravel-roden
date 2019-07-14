@@ -6,7 +6,7 @@ import { Divider } from 'antd';
 class Index extends Component {
 
   handleclickModal(modalVisible) {
-    this.refs.child.setModalVisible(modalVisible);
+    this.category.setModalVisible(modalVisible);
   }
 
   handleAddWord(modalVisible){
@@ -16,7 +16,7 @@ class Index extends Component {
   render() {
     return (
       <Fragment>
-        <AddModal ref="child"/>
+        <AddModal onRef={ref => (this.category = ref)} />
         <AddWord  ref="word"/>
         <table className="ui compact celled definition table">
           <thead>

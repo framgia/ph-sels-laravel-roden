@@ -5,7 +5,8 @@ import { Route, Switch } from 'react-router-dom';
 import { ProtectedRoute } from '../../utils/route';
 import { PublicRoute } from '../../utils/route';
 import { checkAuth } from '../../actions';
-import Index from './user/Index.jsx';
+import Users from './user/Index.jsx';
+import Categories from './categories/Index.jsx';
 
 class Router extends Component {
 	componentDidMount() {
@@ -18,13 +19,19 @@ class Router extends Component {
 				<ProtectedRoute
 					exact
 					path="/admin"
-					component={Index}
+					component={Users}
 					isAuthenticated={this.props.isAuth}
 				/>
 				<ProtectedRoute
 					exact
 					path="/admin/users"
-					component={Index}
+					component={Users}
+					isAuthenticated={this.props.isAuth}
+				/>
+				<ProtectedRoute
+					exact
+					path="/admin/categories"
+					component={Categories}
 					isAuthenticated={this.props.isAuth}
 				/>
 				<Route path="*" component={() => "404 page not found"} />

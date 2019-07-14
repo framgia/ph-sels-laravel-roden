@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {connect} from 'react-redux';
 import {
   Form,
   Input,
@@ -7,8 +8,16 @@ import {
   Button,
   Modal
 } from 'antd';
+import { addCategory } from '../actions';
 
 class AddModal extends Component {
+
+  componentDidMount() {
+    this.props.onRef(this)
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
 
   constructor(props){
     super(props)
@@ -31,6 +40,8 @@ class AddModal extends Component {
 
   handleSubmit(e){
     e.preventDefault()
+
+    this.props.addCategory(this.state.from)
   }
 
   render() {
@@ -55,7 +66,6 @@ class AddModal extends Component {
             </div>
             <div className="field">
               <label>Description</label>
-
               <textarea 
                 name="description"
                 placeholder="description"
@@ -71,5 +81,8 @@ class AddModal extends Component {
   }
 }
 
+const mapStateToProps = state =>{
+  return {'errMsg': ''}
+}
 
-export default AddModal;
+export default connect(mapStateToProps , { addCategory })(AddModal);
