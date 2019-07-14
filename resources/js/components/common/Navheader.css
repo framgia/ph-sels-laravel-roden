@@ -1,0 +1,17 @@
+.ant-dropdown-menu-vertical {
+  width: 175px;
+  left: -28px;
+}
+
+.menu .ant-divider {
+  top: 12px;
+  height: 21px;
+}
+
+a .item{
+  font-weight: bolder !important;
+}
+
+a .item:hover{
+  color:green !important;  
+}
