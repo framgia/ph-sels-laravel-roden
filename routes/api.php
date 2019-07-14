@@ -19,4 +19,8 @@ Route::post('/login' , 'PassportController@login');
 Route::group(['middleware' => 'auth:api'], function() {
 	Route::post('/logout', 'PassportController@logout');
 	Route::get('/check-token', function(){return response()->json(['user' => auth()->user()]);});
+
+	Route::group(['namespace' => 'Admin'] , function(){
+		Route::post('/add-category' , 'CategoryController@store');
+	});
 });

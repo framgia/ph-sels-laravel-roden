@@ -6,9 +6,7 @@ export const addCategory = payload => async dispatch => {
 			.post("/api/add-category", payload)
 			.then(response => {
 				dispatch({ type: "CATEGORY_ADD", payload: response.data });
-				setTimeout(function() {
-					resolve();
-				}, 5000);
+				resolve();
 			})
 			.catch(err => {
 				reject(err.response.data.errors);
