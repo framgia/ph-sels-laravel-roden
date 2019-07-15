@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Icon, Col, Button, Modal } from 'antd';
-import { addCategory } from '../actions';
+import { addCategory , updateCategory} from '../actions';
 
 class AddModal extends Component {
   componentDidMount() {
@@ -16,6 +16,8 @@ class AddModal extends Component {
 
     this.state = {
       modalVisible: false,
+      action: 'add' /*add or update*/,
+      categoryId: '' /*for update category*/,
       form: {
         title: '',
         description: ''
@@ -24,23 +26,53 @@ class AddModal extends Component {
     };
   }
 
-  setModalVisible(modalVisible) {
+  setModalVisible(modalVisible, action , category) {
     this.setState({
-      modalVisible: modalVisible
+      modalVisible: modalVisible,
+      action: action, /*add or update*/
+      categoryId: category ? category.id : '',
+      form:{
+        'title' : category ? category.title : '',
+        'description': category ? category.description : ''
+      },
+      errMsg: ''
     });
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    if (this.state.action == "add") {
+      this.addCategory();
+    } else {
+      this.updateCategory();
+    }
+  }
 
+  updateCategory() {
+    this.props
+      .updateCategory(this.state.form , this.state.categoryId)
+      .then(response => {
+        var form = { ...this.state.form };
+        form.title = "";
+        form.description = "";
+        this.setState({ form });
+        this.setModalVisible(false);
+      })
+      .catch(err => {
+        console.log(err)
+        this.setState({ errMsg: err });
+      });
+  }
+
+  addCategory() {
     this.props
       .addCategory(this.state.form)
       .then(response => {
-        var form = {...this.state.form}
-        form.title = ''
-        form.description = ''
-        this.setState({form})
-        this.setModalVisible(false)
+        var form = { ...this.state.form };
+        form.title = "";
+        form.description = "";
+        this.setState({ form });
+        this.setModalVisible(false);
       })
       .catch(err => {
         this.setState({ errMsg: err });
@@ -48,20 +80,20 @@ class AddModal extends Component {
   }
 
   mapObject(object, callback) {
-    return Object.keys(object).map(function (key) {
+    return Object.keys(object).map(function(key) {
       return callback(key, object[key]);
     });
   }
 
   parseError() {
-    if (this.state.errMsg != '') {
+    if (this.state.errMsg != "") {
       return (
         <div className="ui error message">
-          {this.mapObject(this.state.errMsg , function(key , value){
+          {this.mapObject(this.state.errMsg, function(key, value) {
             return (
-                <ul className="list" key={key}>
-                  <li>{value}</li>
-                </ul>
+              <ul className="list" key={key}>
+                <li>{value}</li>
+              </ul>
             );
           })}
         </div>
@@ -73,7 +105,9 @@ class AddModal extends Component {
     return (
       <Fragment>
         <Modal
-          title="Add New Category"
+          title={
+            this.state.action == "add" ? "Add New Category" : "Update Category"
+          }
           centered
           visible={this.state.modalVisible}
           onCancel={() => this.setModalVisible(false)}
@@ -123,5 +157,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addCategory }
+  { addCategory , updateCategory}
 )(AddModal);

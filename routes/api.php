@@ -22,5 +22,8 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 	Route::group(['namespace' => 'Admin'] , function(){
 		Route::post('/add-category' , 'CategoryController@store');
+		Route::post('/categories/{id}' , 'CategoryController@update');
+		Route::get('/categories' , 'CategoryController@all');
+		Route::delete('/categories/{id}' , 'CategoryController@remove');
 	});
 });

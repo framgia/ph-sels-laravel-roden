@@ -66,5 +66,12 @@ interface BaseInterface
 	 */
 	public function paginate($number);
 
+	/**
+	 * Update data in database
+	 *
+	 * @param  array $request
+	 * @return App\Models\Model
+	 */
+	public function update($request , $id);
 
 }

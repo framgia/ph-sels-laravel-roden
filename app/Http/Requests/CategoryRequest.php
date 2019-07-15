@@ -24,7 +24,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'       => 'required|unique:categories',
+            'title'       => 'required|unique:categories,title,'.request()->route('id'),
             'description' => 'required',
         ];
     }
