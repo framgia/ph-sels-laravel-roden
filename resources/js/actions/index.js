@@ -1,14 +1,12 @@
-import _ from 'lodash';
-
 /*
  Register User
 */
 export const registerUser = payload => async dispatch => {
   return new Promise((resolve, reject) => {
     axios
-      .post('/api/register', payload)
+      .post("/api/register", payload)
       .then(response => {
-        dispatch({ type: 'AUTH_LOGIN', payload: response.data });
+        dispatch({ type: "AUTH_LOGIN", payload: response.data });
 
         setTimeout(function() {
           resolve();
@@ -25,13 +23,13 @@ export const registerUser = payload => async dispatch => {
 */
 export const checkAuth = () => async dispatch => {
   axios
-    .get('/api/check-token')
+    .get("/api/check-token")
     .then(response => {
-      dispatch({ type: 'AUTH_CHECK' });
+      dispatch({ type: "AUTH_CHECK" });
     })
     .catch(err => {
-      dispatch({ type: 'AUTH_LOGOUT' });
-      dispatch({ type: 'AUTH_CHECK' });
+      dispatch({ type: "AUTH_LOGOUT" });
+      dispatch({ type: "AUTH_CHECK" });
     });
 };
 
@@ -41,9 +39,9 @@ export const checkAuth = () => async dispatch => {
 export const loginUser = payload => async dispatch => {
   return new Promise((resolve, reject) => {
     axios
-      .post('/api/login', payload)
+      .post("/api/login", payload)
       .then(response => {
-        dispatch({ type: 'AUTH_LOGIN', payload: response.data });
+        dispatch({ type: "AUTH_LOGIN", payload: response.data });
 
         setTimeout(function() {
           resolve();
@@ -56,9 +54,9 @@ export const loginUser = payload => async dispatch => {
 };
 
 export const authLogout = () => async dispatch => {
-  axios.post('/api/logout').then(response => {
-    dispatch({ type: 'AUTH_LOGOUT' });
+  axios.post("/api/logout").then(response => {
+    dispatch({ type: "AUTH_LOGOUT" });
 
-    this.props.history.push('/login');
+    this.props.history.push("/login");
   });
 };
