@@ -25,8 +25,8 @@ class Index extends Component {
     this.category.setModalVisible(modalVisible ,action, category);
   }
 
-  handleAddWord(modalVisible){
-    this.refs.word.setModalVisible(modalVisible);
+  handleAddWord(modalVisible , id){
+    this.word.setModalVisible(modalVisible , id)
   }
 
   onShowSizeChange(page) {
@@ -65,7 +65,7 @@ class Index extends Component {
                 <td>{category.title}</td>
                 <td>{category.description}</td>
                 <td>
-                  <a onClick={() => self.handleAddWord(true)}>
+                  <a onClick={() => self.handleAddWord(true , category.id)}>
                     Add Word
                   </a>
                   <Divider type="vertical"/>
@@ -89,7 +89,7 @@ class Index extends Component {
     return (
       <Fragment>
         <AddModal onRef={ref => (this.category = ref)} />
-        <AddWord  ref="word"/>
+        <AddWord  onRef={ref => (this.word = ref)}/>
         <div className="ui segment">
           <div className="uiinverted dimmer">
             <div 

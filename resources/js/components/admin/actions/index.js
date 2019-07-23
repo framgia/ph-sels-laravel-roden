@@ -3,7 +3,7 @@ import _ from 'lodash';
 export const addCategory = payload => async dispatch => {
   return new Promise((resolve, reject) => {
     axios
-      .post('/api/add-category', payload)
+      .post('/api/categories', payload)
       .then(response => {
         dispatch({ type: 'CATEGORY_PUSH', payload: response.data.payload });
         resolve();

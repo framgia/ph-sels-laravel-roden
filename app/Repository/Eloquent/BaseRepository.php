@@ -97,7 +97,6 @@ abstract class BaseRepository implements BaseInterface{
    * @return App\Models\Model
    */
   public function create($request){
-
     return response()->json(['payload' => $this->model->create($request)] , 200);
   }
 
@@ -108,8 +107,6 @@ abstract class BaseRepository implements BaseInterface{
    * @return App\Models\Model
    */
   public function update($request , $id){
-    return response()
-        ->json(['payload' =>$this->model->updateOrCreate(['id' => $id], $request->all())
-                                        ->fresh()] , 200);
+    return response()->json(['payload' =>$this->model->updateOrCreate(['id' => $id], $request->all())->fresh()] , 200);
   }
 }

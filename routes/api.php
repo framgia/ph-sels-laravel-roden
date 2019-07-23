@@ -17,13 +17,16 @@ Route::post('/register' , 'PassportController@register');
 Route::post('/login' , 'PassportController@login');
 
 Route::group(['middleware' => 'auth:api'], function() {
-	Route::post('/logout', 'PassportController@logout');
-	Route::get('/check-token', function(){return response()->json(['user' => auth()->user()]);});
+  Route::post('/logout', 'PassportController@logout');
+  Route::get('/check-token', function(){return response()->json(['user' => auth()->user()]);});
 
-	Route::group(['namespace' => 'Admin'] , function(){
-		Route::post('/add-category' , 'CategoryController@store');
-		Route::post('/categories/{id}' , 'CategoryController@update');
-		Route::get('/categories' , 'CategoryController@all');
-		Route::delete('/categories/{id}' , 'CategoryController@remove');
-	});
+  Route::group(['namespace' => 'Admin'
+  			   ,'prefix' => 'categories'] , function(){
+	Route::post('/' , 'CategoryController@store');
+	Route::post('/{id}' , 'CategoryController@update');
+    Route::get('/' , 'CategoryController@all');
+    Route::delete('/{id}' , 'CategoryController@remove');
+
+    Route::post('/{id}/add-words' , 'WordController@store');
+  });
 });

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Icon, Col, Button, Modal } from 'antd';
 import { addCategory , updateCategory} from '../actions';
+import _ from 'lodash';
 
 class AddModal extends Component {
   componentDidMount() {
